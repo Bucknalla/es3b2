@@ -1,0 +1,66 @@
+now that we have vivado open the first thing we  want to do is create a top file for our logic this  
+file will connect the inputs from our switches  to the seven segment display and provide the  
+required logic for determining which characters to  illuminate depending on which switch is selected  
+to create a source file for verilog what we  can do is click the plus button here go to  
+add or create design sources we'll  create a new file let's call this seven_seg
+click finish accept the defaults for the  definitions we're going to describe those later
+that's okay so now Vivado should create a  templated file for us so double click on that  
+to open it in this case i've already prepared  it so we have a look at what i've described  
+so we have the initial definition for the module  this tells us we're creating a module called seven_seg
+with a selection of inputs and outputs we have an  input of a four bit wide bus called switch or sw  
+we have outputs for a b c d e f and g  corresponding to the different segments  
+on the seven segment display and then we have an  assignment here for specifically the a segment  
+where i've used boolean algebra from the truth  table in your lab notes to create the logic  
+that describes when the segment for a should be  illuminated depending on which switch is selected  
+so what you'll need to do is you'll need to create  assignments for each of the other segments of  
+display b c d e f and g what the assign  keyword does is tell the synthesis tools  
+that 'a' corresponds to a specific selection of  logic as an input and output 'a' depending on the  
+evaluation of this logic so what you need to do  is create the other segments based upon your truth  
+table and then we can go and start looking at how  to actually generate the bitstream required for  
+running it on the fpga itself so what we'll need  to do once you've created the other segments  
+is go to constraints and click add or create  constraints so what we described earlier was the  
+verilog source file this is the logic inside  of the fpga and how the routing is mapped  
+the constraints file however is the interface the  outside world so where verilog describes how the  
+logic internally is configured the constraints  file determine how the mapping from inside the  
+fpga is connected to the outside world so we'll  create a file let's call that nexys4.xdc
+okay and click finish so you'll see  here it's created the file for us
+now i've already created a file previously so it  has some of my previous logic actually in this  
+file if you navigate to the repository the github  repository that i specified at the beginning of  
+the lab you can see that here i'll have this file  stored so you don't need to worry about copying it  
+across you can just grab it from here and open  it within vivado the best thing to do if you're  
+on windows is actually to download this entire  repository as a zip find the nexys4.xdc file  
+copy the contents of that file and then paste  it into the file that we created from Vivado
+so what we need to do is  go through and actually set  
+which properties connect the outside of the  board to the fpga so here you can see i've  
+created four constraints specifically  for the switches so we know that we have  
+sw 0 to 3 these describe the first four which is from the right side of the fpga board  
+and how they connect to the fpga itself the next  thing we need to do is we need to go down to the  
+seven segment display so we know that there  are the seven segments and we also need to  
+create the assignments for each of these in the  file that i've uploaded to github there will  
+be these seven segments already described you  may need to uncomment them depending on which  
+lab we're currently doing make sure to only  uncomment the ones you need if you uncomment  
+additional ones you may get complaints as  the tools run through the synthesis process  
+so now that we have this in place we can actually  go ahead and start generating bitstreams  
+so when we click generate bitstream what this  will do is it will initially run through synthesis  
+synthesis takes our verilog that we've written  and compiles into what's known as a netlist  
+a netllist is a logical arrangement on the fpga  itself that describes any of the logic that  
+we specified in the verilog file once the netlist  has been generated vivado then goes through what's  
+known as the implementation process so there's two  stages with programming fpgas the first is turning  
+high level verilog into a netlist the second  is placing that list actually onto the fpga itself  
+so the netlist is just a description of how the  very very low level basically below resistor  
+transistor logic is described at a fundamental  level this then needs to be transcribed to the  
+fpga itself so implementation works out which  physical resources on the fpga can be used  
+and how to route them together by clicking  generate bit stream the tool will run through both  
+synthesis implementation and then compile that into  a bitstream for us so click generate bitstream  
+if you've run it previously you  may get this warning just hit yes
+select the number of jobs you want in this  case as many as possible would be ideal
+when your design has finished generating you  should receive this message we can then go to  
+is the hardware manager this will be the  interface between fpga and the vivado tools
+so from here we can see that a device has been  found but it hasn't been opened we can open it by  
+clicking open target and auto connect so now our  device has been found we can go to program device
+the default bitstream should be the one that  we generated a few moments ago click program
+your device should now illuminate with all of  the seven segment displays showing zero so we  
+can see that at default all of the values are set  to zero and as we increment the binary values on  
+the first four switches we get the corresponding  numerical alphanumerical representation one two  
+three so on so forth all the way up to
+f 

@@ -1,0 +1,46 @@
+for part two of the lab we need to  create another verilog source file  
+this will become our top file for the project and  we'll include the seven segment module within it
+so we call this file adder
+again keep all the defaults
+so now with adder open we can start  populating this with our logic so the  
+first thing we want to do is create  a 4-bit wide input for x and for y
+so these describe our switches we'll  input our numbers to add together
+next we want to take a selection of seven segments  again so this is a through g as our outputs
+and then we need one final output for  storing the overflow of our addition
+so this will be mapped to an  led on the constraints file
+what we then want to do is we need to create  a wire to store the output of our addition so  
+we can do this with the keyword wire creating  it as a 5-bit wide bus for sum so the reason  
+it's five bits wide whereas our inputs are four  bits wide is that we know if x and y create a  
+value that is larger than four bits there'll be  an overflow and we need to store that somewhere  
+so what we can do next is we can  assign sum to the summation of x and y
+next we can assign the overflow to the topmost bit  
+of sum which will store the  overflow value from the addition
+and finally we want to connect this to the  previous logic we wrote for our seven segment  
+display so the way that we could do this is we can  use the keyword seven seg the name of our module
+specified by an instance of that module so let's  call this 'inst' doesn't need to have a specific  
+name this is whatever you want it to be followed  by the assignment of the inputs of that module  
+so in this case we know that there is the sum  value as our switch value as we previously used so  
+as before we had sw storing a 4-bit wide bus  for the input of the switches instead of the  
+switches being the input now we're going to use  the wire that we created earlier so we can do sum  
+in this case we only want to  specify a 4-bit wide value
+followed by each of the outputs  of the seven segment display  
+you can see we're missing a semicolon there  so if you now save this file you should see  
+the design sources update on the side so now it's  pulled in seven segment as an instance within adder  
+so adder is the top file pulled in by the instance  of seven segment underneath it this is a hierarchy  
+that will be generated in Vivado as we run  through the tools again so the next thing we  
+need to do is we need to now map the values that  we're using in our adder to the constraints file  
+to make sure that our inputs and outputs are  correct so if we go back to the constraints  
+file we can look at our switches so we know that  we've now changed the name of the switch to x
+and we've added four more switches so here we  can uncomment this with the y values next we  
+know that we have an led for the overflow value in  this case overflow so we can uncomment this line  
+and we still have the same values from the seven  segment displays earlier so save that now we can  
+go back to the tool flow again and click generate  bit stream it should warn you that synthesis  
+is out of date that is correct we want to run  through both synthesis and implementation before  
+we generate our bitstream so we can see that the  board is now in its default state after just being  
+programmed and we can set our application  running so the first four toggle switches  
+correspond to x second four correspond to y we  see one plus zero is one one plus one is two  
+and then we can change it so if we set  x to 2 and y is currently on 1 we get 3  
+we can set y to 0 and then y to 2 before  and then we can keep going up so set x to 3  
+y to 3 and then we can look what  happens when we overflow it so if  
+we set both x and y to maximum so  x being f and y being f as well
+you can see now that we have  an overflow led illuminated 
