@@ -1,0 +1,185 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:00.160 --> 00:00:04.080
+for part two of the lab we need to&nbsp;
+create another verilog source file&nbsp;&nbsp;
+
+00:00:04.080 --> 00:00:08.240
+this will become our top file for the project and&nbsp;
+we'll include the seven segment module within it
+
+00:00:12.240 --> 00:00:16.400
+so we call this file adder
+
+00:00:20.400 --> 00:00:22.320
+again keep all the defaults
+
+00:00:25.840 --> 00:00:31.680
+so now with adder open we can start&nbsp;
+populating this with our logic so the&nbsp;&nbsp;
+
+00:00:31.680 --> 00:00:43.840
+first thing we want to do is create&nbsp;
+a 4-bit wide input for x and for y
+
+00:00:49.120 --> 00:00:52.720
+so these describe our switches we'll&nbsp;
+input our numbers to add together
+
+00:00:54.800 --> 00:01:01.680
+next we want to take a selection of seven segments&nbsp;
+again so this is a through g as our outputs
+
+00:01:06.240 --> 00:01:11.840
+and then we need one final output for&nbsp;
+storing the overflow of our addition
+
+00:01:17.360 --> 00:01:20.080
+so this will be mapped to an&nbsp;
+led on the constraints file
+
+00:01:22.560 --> 00:01:28.800
+what we then want to do is we need to create&nbsp;
+a wire to store the output of our addition so&nbsp;&nbsp;
+
+00:01:28.800 --> 00:01:41.680
+we can do this with the keyword wire creating&nbsp;
+it as a 5-bit wide bus for sum so the reason&nbsp;&nbsp;
+
+00:01:41.680 --> 00:01:46.800
+it's five bits wide whereas our inputs are four&nbsp;
+bits wide is that we know if x and y create a&nbsp;&nbsp;
+
+00:01:46.800 --> 00:01:52.160
+value that is larger than four bits there'll be&nbsp;
+an overflow and we need to store that somewhere&nbsp;&nbsp;
+
+00:01:53.760 --> 00:01:57.840
+so what we can do next is we can&nbsp;
+assign sum to the summation of x and y
+
+00:02:05.760 --> 00:02:09.200
+next we can assign the overflow to the topmost bit&nbsp;&nbsp;
+
+00:02:09.200 --> 00:02:11.920
+of sum which will store the&nbsp;
+overflow value from the addition
+
+00:02:20.000 --> 00:02:23.520
+and finally we want to connect this to the&nbsp;
+previous logic we wrote for our seven segment&nbsp;&nbsp;
+
+00:02:23.520 --> 00:02:30.640
+display so the way that we could do this is we can&nbsp;
+use the keyword seven seg the name of our module
+
+00:02:34.800 --> 00:02:41.200
+specified by an instance of that module so let's&nbsp;
+call this 'inst' doesn't need to have a specific&nbsp;&nbsp;
+
+00:02:41.200 --> 00:02:49.840
+name this is whatever you want it to be followed&nbsp;
+by the assignment of the inputs of that module&nbsp;&nbsp;
+
+00:02:51.280 --> 00:03:00.720
+so in this case we know that there is the sum&nbsp;
+value as our switch value as we previously used so&nbsp;&nbsp;
+
+00:03:01.360 --> 00:03:07.760
+as before we had sw storing a 4-bit wide bus&nbsp;
+for the input of the switches instead of the&nbsp;&nbsp;
+
+00:03:07.760 --> 00:03:13.760
+switches being the input now we're going to use&nbsp;
+the wire that we created earlier so we can do sum&nbsp;&nbsp;
+
+00:03:15.680 --> 00:03:19.360
+in this case we only want to&nbsp;
+specify a 4-bit wide value
+
+00:03:21.440 --> 00:03:31.840
+followed by each of the outputs&nbsp;
+of the seven segment display&nbsp;&nbsp;
+
+00:03:33.840 --> 00:03:41.600
+you can see we're missing a semicolon there&nbsp;
+so if you now save this file you should see&nbsp;&nbsp;
+
+00:03:41.600 --> 00:03:50.240
+the design sources update on the side so now it's&nbsp;
+pulled in seven segment as an instance within adder&nbsp;&nbsp;
+
+00:03:50.800 --> 00:03:57.920
+so adder is the top file pulled in by the instance&nbsp;
+of seven segment underneath it this is a hierarchy&nbsp;&nbsp;
+
+00:03:57.920 --> 00:04:02.560
+that will be generated in Vivado as we run&nbsp;
+through the tools again so the next thing we&nbsp;&nbsp;
+
+00:04:02.560 --> 00:04:08.000
+need to do is we need to now map the values that&nbsp;
+we're using in our adder to the constraints file&nbsp;&nbsp;
+
+00:04:08.000 --> 00:04:11.360
+to make sure that our inputs and outputs are&nbsp;
+correct so if we go back to the constraints&nbsp;&nbsp;
+
+00:04:11.360 --> 00:04:16.080
+file we can look at our switches so we know that&nbsp;
+we've now changed the name of the switch to x
+
+00:04:18.400 --> 00:04:25.120
+and we've added four more switches so here we&nbsp;
+can uncomment this with the y values next we&nbsp;&nbsp;
+
+00:04:25.120 --> 00:04:30.720
+know that we have an led for the overflow value in&nbsp;
+this case overflow so we can uncomment this line&nbsp;&nbsp;
+
+00:04:32.320 --> 00:04:38.800
+and we still have the same values from the seven&nbsp;
+segment displays earlier so save that now we can&nbsp;&nbsp;
+
+00:04:38.800 --> 00:04:44.960
+go back to the tool flow again and click generate&nbsp;
+bit stream it should warn you that synthesis&nbsp;&nbsp;
+
+00:04:44.960 --> 00:04:49.040
+is out of date that is correct we want to run&nbsp;
+through both synthesis and implementation before&nbsp;&nbsp;
+
+00:04:49.040 --> 00:05:00.160
+we generate our bitstream so we can see that the&nbsp;
+board is now in its default state after just being&nbsp;&nbsp;
+
+00:05:00.160 --> 00:05:08.480
+programmed and we can set our application&nbsp;
+running so the first four toggle switches&nbsp;&nbsp;
+
+00:05:09.440 --> 00:05:19.440
+correspond to x second four correspond to y we&nbsp;
+see one plus zero is one one plus one is two&nbsp;&nbsp;
+
+00:05:21.040 --> 00:05:27.840
+and then we can change it so if we set&nbsp;
+x to 2 and y is currently on 1 we get 3&nbsp;&nbsp;
+
+00:05:27.840 --> 00:05:38.880
+we can set y to 0 and then y to 2 before&nbsp;
+and then we can keep going up so set x to 3&nbsp;&nbsp;
+
+00:05:40.240 --> 00:05:43.680
+y to 3 and then we can look what&nbsp;
+happens when we overflow it so if&nbsp;&nbsp;
+
+00:05:43.680 --> 00:05:48.880
+we set both x and y to maximum so&nbsp;
+x being f and y being f as well
+
+00:05:51.600 --> 00:05:56.320
+you can see now that we have&nbsp;
+an overflow led illuminated
+

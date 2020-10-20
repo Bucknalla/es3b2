@@ -1,0 +1,104 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:01.280 --> 00:00:07.440
+this is an introduction to es3b2&nbsp;
+es2e3 digital systems design&nbsp;&nbsp;
+
+00:00:08.320 --> 00:00:13.360
+so the first thing we need to do to set up our&nbsp;
+environment is to go ahead and download the&nbsp;&nbsp;
+
+00:00:13.360 --> 00:00:18.480
+xilinx vivado tools if you haven't already&nbsp;
+you can find these at the xilinx's website
+
+00:00:25.760 --> 00:00:35.040
+we go through go to download vivado we want&nbsp;
+2019.2 and then you can scroll down to a&nbsp;&nbsp;
+
+00:00:35.040 --> 00:00:43.840
+link that says the xilinx unified installer&nbsp;
+2019 windows self-extracting web installer
+
+00:00:50.160 --> 00:00:52.800
+you may need to create an account&nbsp;
+and add any additional information&nbsp;&nbsp;
+
+00:00:53.920 --> 00:01:02.080
+before you can download hit download and then the&nbsp;
+tool will open up an installation process&nbsp;&nbsp;
+
+00:01:03.040 --> 00:01:08.240
+you can take a look at that so this may take&nbsp;
+some time depending on how fast your machine is&nbsp;&nbsp;
+
+00:01:08.240 --> 00:01:15.120
+while we wait for this to open  it's worth&nbsp;
+heading over to a repository i've set up for&nbsp;&nbsp;
+
+00:01:15.760 --> 00:01:21.760
+the code associated with this lab you can head&nbsp;
+to my github repo which should be
+
+00:01:23.120 --> 00:01:30.560
+https://github.com/Bucknalla/es3b2 and i'll have all of the files&nbsp;
+that you need for these projects and any of the&nbsp;&nbsp;
+
+00:01:31.600 --> 00:01:36.240
+verilog source files and code that we end&nbsp;
+up writing specifically for this module
+
+00:01:38.480 --> 00:01:41.920
+if you want to grab this you can either&nbsp;
+click download as a zip or you can&nbsp;&nbsp;
+
+00:01:42.800 --> 00:01:45.360
+download it using git if you&nbsp;
+are familiar with that tool&nbsp;&nbsp;
+
+00:01:46.080 --> 00:01:53.840
+so now that you've got the installer open you&nbsp;
+can go through hit next add your account details
+
+00:02:05.280 --> 00:02:11.920
+agree to the terms and conditions now what you&nbsp;
+want to do is install just the vivado environment&nbsp;&nbsp;
+
+00:02:12.720 --> 00:02:16.880
+there are other products that xilinx offers&nbsp;
+but this lab will focus specifically on vivado&nbsp;&nbsp;
+
+00:02:18.560 --> 00:02:22.800
+what we want to do is we want&nbsp;
+to install the vivado hl webpack
+
+00:02:25.760 --> 00:02:30.960
+and then what we can do is if we go through&nbsp;
+and have a look at the devices so what we&nbsp;&nbsp;
+
+00:02:30.960 --> 00:02:37.600
+want is we want to install only the 7 series&nbsp;
+everything else we can remove to save some space&nbsp;&nbsp;
+
+00:02:38.320 --> 00:02:46.560
+otherwise you'll be downloading quite a lot of&nbsp;
+data so just tick the option for 7 series which&nbsp;&nbsp;
+
+00:02:46.560 --> 00:02:53.440
+i think is by default selected so you'll need&nbsp;
+to have 30 gigs of free space on your machine
+
+00:02:55.520 --> 00:03:01.760
+now i already have this installed so it'll be&nbsp;
+in my C:\Xilinx i recommend&nbsp;&nbsp;
+
+00:03:01.760 --> 00:03:05.760
+you install it there too it's easier to find and&nbsp;
+when i'm referencing things i'll be using it from&nbsp;&nbsp;
+
+00:03:05.760 --> 00:03:11.440
+there as well at which point you can then go to&nbsp;
+next and it will start the installation process
+

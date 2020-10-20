@@ -1,0 +1,266 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:00.640 --> 00:00:07.760
+now that we have vivado open the first thing we&nbsp;
+want to do is create a top file for our logic this&nbsp;&nbsp;
+
+00:00:07.760 --> 00:00:13.520
+file will connect the inputs from our switches&nbsp;
+to the seven segment display and provide the&nbsp;&nbsp;
+
+00:00:13.520 --> 00:00:17.520
+required logic for determining which characters to&nbsp;
+illuminate depending on which switch is selected&nbsp;&nbsp;
+
+00:00:18.880 --> 00:00:25.520
+to create a source file for verilog what we&nbsp;
+can do is click the plus button here go to&nbsp;&nbsp;
+
+00:00:25.520 --> 00:00:32.560
+add or create design sources we'll&nbsp;
+create a new file let's call this seven_seg
+
+00:00:36.240 --> 00:00:41.520
+click finish accept the defaults for the&nbsp;
+definitions we're going to describe those later
+
+00:00:43.680 --> 00:00:52.240
+that's okay so now Vivado should create a&nbsp;
+templated file for us so double click on that&nbsp;&nbsp;
+
+00:00:52.240 --> 00:00:58.320
+to open it in this case i've already prepared&nbsp;
+it so we have a look at what i've described&nbsp;&nbsp;
+
+00:00:58.320 --> 00:01:03.760
+so we have the initial definition for the module&nbsp;
+this tells us we're creating a module called seven_seg
+
+00:01:04.560 --> 00:01:12.560
+with a selection of inputs and outputs we have an&nbsp;
+input of a four bit wide bus called switch or sw&nbsp;&nbsp;
+
+00:01:13.200 --> 00:01:18.160
+we have outputs for a b c d e f and g&nbsp;
+corresponding to the different segments&nbsp;&nbsp;
+
+00:01:18.160 --> 00:01:23.440
+on the seven segment display and then we have an&nbsp;
+assignment here for specifically the a segment&nbsp;&nbsp;
+
+00:01:23.440 --> 00:01:29.440
+where i've used boolean algebra from the truth&nbsp;
+table in your lab notes to create the logic&nbsp;&nbsp;
+
+00:01:29.440 --> 00:01:34.640
+that describes when the segment for a should be&nbsp;
+illuminated depending on which switch is selected&nbsp;&nbsp;
+
+00:01:36.320 --> 00:01:40.240
+so what you'll need to do is you'll need to create&nbsp;
+assignments for each of the other segments of&nbsp;&nbsp;
+
+00:01:40.240 --> 00:01:47.600
+display b c d e f and g what the assign&nbsp;
+keyword does is tell the synthesis tools&nbsp;&nbsp;
+
+00:01:47.600 --> 00:01:56.000
+that 'a' corresponds to a specific selection of&nbsp;
+logic as an input and output 'a' depending on the&nbsp;&nbsp;
+
+00:01:56.000 --> 00:02:03.840
+evaluation of this logic so what you need to do&nbsp;
+is create the other segments based upon your truth&nbsp;&nbsp;
+
+00:02:03.840 --> 00:02:09.760
+table and then we can go and start looking at how&nbsp;
+to actually generate the bitstream required for&nbsp;&nbsp;
+
+00:02:11.600 --> 00:02:18.000
+running it on the fpga itself so what we'll need&nbsp;
+to do once you've created the other segments&nbsp;&nbsp;
+
+00:02:18.640 --> 00:02:26.880
+is go to constraints and click add or create&nbsp;
+constraints so what we described earlier was the&nbsp;&nbsp;
+
+00:02:26.880 --> 00:02:31.120
+verilog source file this is the logic inside&nbsp;
+of the fpga and how the routing is mapped&nbsp;&nbsp;
+
+00:02:32.320 --> 00:02:37.680
+the constraints file however is the interface the&nbsp;
+outside world so where verilog describes how the&nbsp;&nbsp;
+
+00:02:37.680 --> 00:02:42.960
+logic internally is configured the constraints&nbsp;
+file determine how the mapping from inside the&nbsp;&nbsp;
+
+00:02:42.960 --> 00:02:52.320
+fpga is connected to the outside world so we'll&nbsp;
+create a file let's call that nexys4.xdc
+
+00:02:54.400 --> 00:02:59.600
+okay and click finish so you'll see&nbsp;
+here it's created the file for us
+
+00:03:02.240 --> 00:03:08.000
+now i've already created a file previously so it&nbsp;
+has some of my previous logic actually in this&nbsp;&nbsp;
+
+00:03:08.000 --> 00:03:13.760
+file if you navigate to the repository the github&nbsp;
+repository that i specified at the beginning of&nbsp;&nbsp;
+
+00:03:13.760 --> 00:03:21.680
+the lab you can see that here i'll have this file&nbsp;
+stored so you don't need to worry about copying it&nbsp;&nbsp;
+
+00:03:21.680 --> 00:03:26.800
+across you can just grab it from here and open&nbsp;
+it within vivado the best thing to do if you're&nbsp;&nbsp;
+
+00:03:26.800 --> 00:03:33.760
+on windows is actually to download this entire&nbsp;
+repository as a zip find the nexys4.xdc file&nbsp;&nbsp;
+
+00:03:34.720 --> 00:03:39.120
+copy the contents of that file and then paste&nbsp;
+it into the file that we created from Vivado
+
+00:03:41.040 --> 00:03:44.240
+so what we need to do is&nbsp;
+go through and actually set&nbsp;&nbsp;
+
+00:03:44.240 --> 00:03:50.080
+which properties connect the outside of the&nbsp;
+board to the fpga so here you can see i've&nbsp;&nbsp;
+
+00:03:51.520 --> 00:03:56.640
+created four constraints specifically&nbsp;
+for the switches so we know that we have&nbsp;&nbsp;
+
+00:03:56.640 --> 00:04:03.840
+sw 0 to 3 these describe the first four
+which is from the right side of the fpga board&nbsp;&nbsp;
+
+00:04:05.680 --> 00:04:11.200
+and how they connect to the fpga itself the next&nbsp;
+thing we need to do is we need to go down to the&nbsp;&nbsp;
+
+00:04:11.200 --> 00:04:16.480
+seven segment display so we know that there&nbsp;
+are the seven segments and we also need to&nbsp;&nbsp;
+
+00:04:17.200 --> 00:04:23.120
+create the assignments for each of these in the&nbsp;
+file that i've uploaded to github there will&nbsp;&nbsp;
+
+00:04:23.120 --> 00:04:27.280
+be these seven segments already described you&nbsp;
+may need to uncomment them depending on which&nbsp;&nbsp;
+
+00:04:27.280 --> 00:04:33.120
+lab we're currently doing make sure to only&nbsp;
+uncomment the ones you need if you uncomment&nbsp;&nbsp;
+
+00:04:33.120 --> 00:04:36.320
+additional ones you may get complaints as&nbsp;
+the tools run through the synthesis process&nbsp;&nbsp;
+
+00:04:38.000 --> 00:04:43.200
+so now that we have this in place we can actually&nbsp;
+go ahead and start generating bitstreams&nbsp;&nbsp;
+
+00:04:43.760 --> 00:04:47.680
+so when we click generate bitstream what this&nbsp;
+will do is it will initially run through synthesis&nbsp;&nbsp;
+
+00:04:47.680 --> 00:04:52.080
+synthesis takes our verilog that we've written&nbsp;
+and compiles into what's known as a netlist&nbsp;&nbsp;
+
+00:04:52.960 --> 00:04:57.760
+a netllist is a logical arrangement on the fpga&nbsp;
+itself that describes any of the logic that&nbsp;&nbsp;
+
+00:04:57.760 --> 00:05:04.720
+we specified in the verilog file once the netlist&nbsp;
+has been generated vivado then goes through what's&nbsp;&nbsp;
+
+00:05:04.720 --> 00:05:10.800
+known as the implementation process so there's two&nbsp;
+stages with programming fpgas the first is turning&nbsp;&nbsp;
+
+00:05:10.800 --> 00:05:17.840
+high level verilog into a netlist the second&nbsp;
+is placing that list actually onto the fpga itself&nbsp;&nbsp;
+
+00:05:18.560 --> 00:05:24.080
+so the netlist is just a description of how the&nbsp;
+very very low level basically below resistor&nbsp;&nbsp;
+
+00:05:24.080 --> 00:05:31.040
+transistor logic is described at a fundamental&nbsp;
+level this then needs to be transcribed to the&nbsp;&nbsp;
+
+00:05:31.040 --> 00:05:35.840
+fpga itself so implementation works out which&nbsp;
+physical resources on the fpga can be used&nbsp;&nbsp;
+
+00:05:37.040 --> 00:05:41.680
+and how to route them together by clicking&nbsp;
+generate bit stream the tool will run through both&nbsp;&nbsp;
+
+00:05:41.680 --> 00:05:47.200
+synthesis implementation and then compile that into&nbsp;
+a bitstream for us so click generate bitstream&nbsp;&nbsp;
+
+00:05:47.920 --> 00:05:51.840
+if you've run it previously you&nbsp;
+may get this warning just hit yes
+
+00:05:54.000 --> 00:05:58.960
+select the number of jobs you want in this&nbsp;
+case as many as possible would be ideal
+
+00:06:01.120 --> 00:06:07.040
+when your design has finished generating you&nbsp;
+should receive this message we can then go to&nbsp;&nbsp;
+
+00:06:07.040 --> 00:06:13.120
+is the hardware manager this will be the&nbsp;
+interface between fpga and the vivado tools
+
+00:06:17.200 --> 00:06:23.520
+so from here we can see that a device has been&nbsp;
+found but it hasn't been opened we can open it by&nbsp;&nbsp;
+
+00:06:23.520 --> 00:06:33.840
+clicking open target and auto connect so now our&nbsp;
+device has been found we can go to program device
+
+00:06:36.320 --> 00:06:40.880
+the default bitstream should be the one that&nbsp;
+we generated a few moments ago click program
+
+00:06:45.120 --> 00:06:51.760
+your device should now illuminate with all of&nbsp;
+the seven segment displays showing zero so we&nbsp;&nbsp;
+
+00:06:51.760 --> 00:06:57.520
+can see that at default all of the values are set&nbsp;
+to zero and as we increment the binary values on&nbsp;&nbsp;
+
+00:06:57.520 --> 00:07:06.000
+the first four switches we get the corresponding&nbsp;
+numerical alphanumerical representation one two&nbsp;&nbsp;
+
+00:07:07.440 --> 00:07:10.240
+three so on so forth all the way up to
+
+00:07:12.240 --> 00:07:13.520
+f
+
