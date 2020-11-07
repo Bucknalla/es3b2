@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 25.10.2020 11:38:24
+// Create Date: 31.10.2018 23:56:48
 // Design Name: 
-// Module Name: seven_segment
+// Module Name: sevenseg
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -21,14 +21,14 @@
 
 
 module sevenseg(
+    input [3:0] num,
     output a,
     output b,
     output c,
     output d,
     output e,
     output f,
-    output g,
-    input [3:0] num
+    output g
     );
     
     reg [6:0] intseg;

@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
-// Engineer: Alex Bucknall
+// Engineer: 
 // 
 // Create Date: 10/31/2016 07:13:38 PM
 // Design Name: 
@@ -22,7 +22,7 @@
 
 module seginterface(
         input clk, rst,
-        input [3:0] dig7, dig6, dig5, dig4, dig3, dig2, dig1, dig0,
+        input [3:0] dig3, dig2, dig1, dig0,
         output div_clk,
         output a, b, c, d, e, f, g,
         output [7:0] an
@@ -54,12 +54,12 @@ module seginterface(
             3'd1: dig_sel = dig1;
             3'd2: dig_sel = dig2;
             3'd3: dig_sel = dig3;
-            3'd4: dig_sel = dig4;
-            3'd5: dig_sel = dig5;
-            3'd6: dig_sel = dig6;
-            3'd7: dig_sel = dig7;
+            // 3'd4: dig_sel = dig4;
+            // 3'd5: dig_sel = dig5;
+            // 3'd6: dig_sel = dig6;
+            // 3'd7: dig_sel = dig7;
         endcase        
     
-    seven_segment inst_1 (.num(dig_sel), .a(a), .b(b), .c(c), .d(d), .e(e), .f(f), .g(g));
+    sevenseg M1 (.num(dig_sel), .a(a), .b(b), .c(c), .d(d), .e(e), .f(f), .g(g));
     
 endmodule
