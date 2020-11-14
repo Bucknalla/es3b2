@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 05.11.2020 15:11:27
+// Create Date: 14.11.2018 18:28:38
 // Design Name: 
-// Module Name: vga_test
+// Module Name: test_bench
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,33 +20,34 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module vga_test();
-
+module test_bench();
+    
     reg clk;
     
-    reg [3:0] sw;
-    
-    wire [3:0] pix_r,pix_g,pix_b;
-    
-    wire hsync,vsync;
+    wire [3:0] pix_r;
+    wire [3:0] pix_g;
+    wire [3:0] pix_b;
+    wire hsync;
+    wire vsync;
     
     initial begin
         clk = 0;
-        sw = 4'b0000;
     end
-
+     
+     // #1 one time unit   
     always begin
-        #1 clk = ~ clk;
+    #1 clk = ~clk;
     end
     
-    vga inst_tb (
+            
+    vga_out name(
         .clk(clk),
-        .sw(sw),
         .pix_r(pix_r),
         .pix_g(pix_g),
         .pix_b(pix_b),
         .hsync(hsync),
         .vsync(vsync)
     );
-
+    
 endmodule
+
